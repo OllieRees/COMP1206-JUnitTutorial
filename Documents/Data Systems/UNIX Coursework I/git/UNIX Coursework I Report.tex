@@ -1,0 +1,196 @@
+\documentclass{article}
+
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{orange}{RGB}{255,127,0}
+
+\usepackage{listings}
+\lstset{frame=tb,
+	language=bash,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left, %eller none
+	numberstyle=\tiny\color{codegray},
+	keywordstyle=\color{mauve},
+	commentstyle=\color{gray},
+	stringstyle=\color{orange},
+	breaklines=false,
+	breakatwhitespace=true,
+	tabsize=3,
+	backgroundcolor=\color{backcolour},  
+}
+
+\title{\textbf{COMP1204}: Data Management \newline \textbf{UNIX Coursework I}: Traveladvisor Hotel Reviews}
+\author{Oliver Rees - or1g18}
+
+\begin{document}
+	\begin{titlepage}
+		\maketitle
+	\end{titlepage}
+	
+	\tableofcontents
+	\newpage
+	
+	\section{UNIX Scripts}
+	\subsection{Count Reviews Bash Script} \label{countreviews script}
+	\textit{countreviews.sh} is run via the command line; the exact commands written are: 
+	
+	\begin{itemize}
+		\item [\$] ./countreviews.sh [path to hotel files]
+	\end{itemize}
+
+	The script counts the number of reviews in a \textit{hotel.dat} file. It does this by counting the occurrence of \textit{$<$Author$>$} in the file with \textbf{grep}: \textit{grep -c "$<$Author$>$" \$file}. A run through of the bash script is given below: 
+	
+	
+	
+	\lstinputlisting[title={countreviews.sh}, frame=tb]{./Scripts/countreviews.sh}
+	
+	\lstinputlisting[firstline=1, lastline=1]{./Scripts/countreviews.sh}
+	This line tells the shell that the script uses the \textbf{bash shell}, and the bash shell is located in \textit{/bin/bash}. Interestingly, the character \textit{\#} starts a comment in bash. 
+	
+	
+	
+	\lstinputlisting[firstline=3, lastline=3]{./Scripts/countreviews.sh}
+	This line stores the command line's argument in the variable \textbf{hotelDir}. The \textit{\$1} calls the value of the first argument. 
+	
+	
+	
+	\lstinputlisting[firstline=5, lastline=10]{./Scripts/countreviews.sh}
+	The first line here begins an enhanced \textbf{for loop around all the files} in the argument-provided path; the use of the wildcard in \textit{/*} enforces that all files in the directory are checked. Likewise, the second line starts said for loop with \textbf{do}, and the sixth line ends it with \textbf{done}. 
+	
+	
+	
+	\lstinputlisting[firstline=7, lastline=8]{./Scripts/countreviews.sh}
+	Within this snippet of code is the assignment of two variables, \textbf{fileName} and \textbf{reviewCount}.
+	\newline
+	fileName uses the \textbf{basename} command to remove the path from the file's name, as the command normally does, as well as the expected extension which is \textit{.dat}.\newline
+	reviewCount uses \textbf{grep -c} to count the number of times the expression \textit{$<$Author$>$} appears in each file. 
+	
+	
+	
+	\lstinputlisting[firstline=9, lastline=9]{./Scripts/countreviews.sh}
+	The use of \textbf{echo} with the call of fileName and reviewCount is done to \textbf{print} out the expected output onto the terminal screen. 
+	
+	
+	
+	\lstinputlisting[firstline=10, lastline=10]{./Scripts/countreviews.sh}
+	This last line involves a \textbf{pipe} to \textbf{sort}. The important options in sort are \textit{-k2}, which means the \textbf{second field} (the review count) are the values sorted, and \textit{-r} which means to sort in \textbf{descending order}.
+	
+	\newpage
+	
+	\subsection{Average Reviews Bash Script} \label{averagereviews script}
+	
+	\textit{averagereviews.sh} is run via the command line; the exact commands written are: 
+	
+	\begin{itemize}
+		\item [\$] ./averagereviews.sh [path to hotel files]
+	\end{itemize}
+	
+	The script \textbf{calculates the average of all the reviews} in a \textit{hotel.dat} file. It does this by dividing the aggregate overall scores of each review with the review count (as done in the countreviews script), using \textbf{awk}. A run through of the bash script is given below: 
+	
+	
+	
+	\lstinputlisting[title={average reviews}, frame=tb script"]{./Scripts/averagereviews.sh}
+	In this script, the first nine lines were explained in \ref{countreviews script}, so I won't explain them again. The new code is explained below: 
+	
+	
+	
+	\lstinputlisting[firstline=12, lastline=13]{./Scripts/averagereviews.sh}
+	These two lines, which is really one line, count the values associated with the \textbf{Overall} key in each review. \newline
+	The use of \textbf{grep} prints out each line with the expression \textit{$<$Overall$>$}, which will contain the values we want to count. These lines are piped to \textbf{sed}. \newline
+	\textbf{sed} substitutes the $<$Overall$>$ tag in every line for nothing: \textbf{sed removes the $<$Overall$>$ tag}. The result of the sed operation is that \textbf{the value is piped to awk}.
+	\newline
+	Awk adds up the aforementioned value to \textbf{sum}. The use of \textit{END} means that the summation is looped around all the lines, as opposed to the value on the last line. Sum is returned and stored in the variable \textbf{ratingSum}.
+	
+
+	
+	\lstinputlisting[firstline=15, lastline=16]{./Scripts/averagereviews.sh}
+	\textbf{averageRating} stores the \textbf{average overall rating} of the hotel, by dividing the previously calculated variables, ratingSum with reviewCount. It uses \textit{printf("\%0.2f")} so that the value returned is to \textbf{2 decimal places}. The division is done via \textbf{awk} in order to have the division return an non-integer result. The variables are assigned to \textbf{s} and \textbf{c}. 
+	
+
+	
+	\lstinputlisting[firstline=18, lastline=19]{./Scripts/averagereviews.sh}
+	These last lines are the same as in \ref{countreviews script}, with the only \textit{slight} difference being the call to averageRating instead of countReviews. \newline
+	
+	\newpage
+	
+	\section{TripAdvisor Script Review} \label{Review}
+	
+	\subsection{Review of the Script's Limitations} \label{Script Limitations}
+	
+	\subsubsection{Displaying Data} \label{Display Issue}
+	The output of both scripts is quite lengthy, with the calculated data from each hotel printed on its own line. If there were more than a million hotels, this would mean more than a million lines to search; searching data for a small subset of hotels would be especially cumbersome. \newline
+	It's possible that such an issue can be avoided by storing the results in a structured document and allowing a querying language like SQL to request the subset of hotel data the user wants. This is further explored in \ref{Data Structure Discussion}. 
+	\newline 
+	
+	\subsubsection{Assumptions made in the script} \label{Assumptions Issue}
+	The scripts relied a great deal on both the format of the hotel files, as well as its metadata. In this section, I'll look at what information the scripts relied on, how this could affect their accuracy, and how to reduce that reliance.
+	\newline \newline
+	The scripts assumed that for each review in the hotel data file there is an $<$Author$>$ tag, and an $<$Overall$>$ tag. \newline
+	If either of these tags failed to appear in a review, then the \textbf{reviewCount} and \textbf{ratingSum} would be inaccurate, as the reviewCount would be lower than the number of reviews, and the ratingSum would be the rating sum of a unspecified subset of the total reviews. Altogether, the countreviews.sh and averagereviews.sh would print inaccurate results. \newline
+	A solution to this would be to force the generation of these tags, in particular, when the hotel data file is generated. 
+	\newline \newline
+	Another assumption made in relation to the format of the hotel data file's content was that the Overall tag always had a value attached to it. If a value failed to appear next to the Overall tag then the value for that review would be treated as 0, even if the review was positive, which would skewer the average rating against the hotel's favour.
+	\newline
+	A solution to reduce the skew is to force the user to submit an overall value when they're writing the review. 
+	\newline \newline
+	Another assumption made by the scripts is that all the files have a \textit{.dat} extension. \newline
+	If a targeted folder, which we'll assume only contains hotel files, had some hotel files listed with an extension {\em other} than \textit{.dat}, this would cause the extension to not be omitted, as per the specification. 
+	\newline
+	A solution to this could be to use sed to remove the extension by using the dot as a field separator. However, this would mean the filename can't have any dots in it. This is preferable to restricting the file extensions in the directory, as having dots in the filename is irregular, whilst the alternative is common. 
+	\newline \newline
+	The script relies on all the files in the given directory, adhering to the hotel data format, but there may be some files such as a log file, or even unrelated files. This would mean that they'd be counted in the display, and for averagereviews.sh they may return an error as there would be no Overall tag to replace. \newline 
+	\newline \newline
+	
+	\subsection{Authentication of the Reviewers} \label{Authenticity}
+	
+	\subsubsection{Authentication Issues} \label{Authenticity issue}
+	Issues may arise due to the authenticity of the reviews. \newline
+	Sometimes, some people may review hotels they have never reviewed. The Unicode text (\textit{.dat} files) do not support such verification, but such verification is possible on the client side. 
+	\newline
+	Although this is typically the case, what if multiple reviews were made by one person in some coordinated attack on the hotel? Would it be fair to count those multiple
+	reviews? 
+	\newline 
+	A solution to this would be to pipe the grep result to sort and then to uniq, to count the reviews as one review, 
+	\begin{itemize}
+		\item [\$] grep "$<$Author$>$" $|$ sort -t'$>$' -k2 $|$ uniq 
+	\end{itemize} 
+	
+	\subsection{Assessment of the Script's performance} \label{Performance}
+	
+	\subsubsection{Efficiency Problems} \label{Efficiency Issue}
+	Firstly, a massive challenge in terms of execution time is how quickly the scripts can loop across a large number of files.
+	\newline
+	Secondly, the scripts need to loop through each line on a file. This can be an issue for files with a large number of lines (over a million). 
+	\newline
+	These are both small issues, but they create an annoyance and can be avoided.
+	
+	\subsubsection{Improving the Performance} \label{Efficiency Solution}
+	There are two solutions to improve the performance: use a relational database, or use a compiled language as opposed to the slower, interpreted bash. 
+	\newline
+	Using a relational database would mean that not every line would need to be looped; all the script would need do to is count the number of records to calculate the reviewCount, or sum up every value in the Overall column: some fields would be ignored. 
+	This would fix the hit to performance caused by looping through every line.
+	\newline
+	Using a compiled language would mean that the time taken to execute the script would be significantly less. Such a language is advisable to use, since the script's content is never changed, and doesn't need to be recompiled each time it's used. Due to UNIX's close history with the C language (a quick compiled language), it's possible to write the 'scripts' in C. 
+	
+	\subsection{A short look at Structured Data vs Unstructured Markup} \label{Data Structure Discussion}
+	\subsection{Using Flat Files} \label{Flat Files}
+	Flat files are databases stored in a plain text file. Tripadvisor's hotel data files are stored in a \textit{.dat} file; according to the file process, \textit{.dat} files are "UTF-8 Unicode text, with very long lines, with CRLF line terminators". Therefore, the hotel data is stored in flat files. \newline
+	The advantages of using flat files is that they're memory efficient, and so a lot of them can be stored in a secondary drive, and they're easy for a human to understand, making it easy for anyone to write the hotel data file. \newline 
+	However, searching through flat files takes much more time than with relational files, and so our scripts are less efficient. This is because there is repetitive and redundant information in flat files, as a result of their lack of relational information; this unnecessarily large information leads to more lines being looped around. 
+	\newline
+	Furthermore, flat files offer a major security flaw: there's no encryption in the files. This means it's easy for a hacker to confidential data on reviewers and hotels; however, if the data files exist to store the model of a public review site, then it would be different as the data would be public and not as necessary to protect. \newline
+	\newline \newline
+	Overall, for our hotel files, it would be preferable for the hotel data to use flat files for small amounts of information, as the execution times of the script would be much less; however, if the files are stored in one root directory, then it would be preferable to use flat files, because of their memory efficiency. \newline
+	I am ignoring the security flaw here as I assume TripAdvisor would want to make this information public for potential customers of a hotel; however, if TripAdvisor were using these files to give a confidential report to a board or business, it would be imperative they use relational files. 
+	
+\end{document}
