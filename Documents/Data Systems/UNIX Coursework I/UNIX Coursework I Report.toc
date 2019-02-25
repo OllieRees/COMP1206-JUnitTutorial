@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}UNIX Scripts}{2}% 
+\contentsline {subsection}{\numberline {1.1}Count Reviews Bash Script}{2}% 
+\contentsline {subsection}{\numberline {1.2}Average Reviews Bash Script}{4}% 
+\contentsline {section}{\numberline {2}TripAdvisor Script Review}{6}% 
+\contentsline {subsection}{\numberline {2.1}Review of the Script's Limitations}{6}% 
+\contentsline {subsubsection}{\numberline {2.1.1}Displaying Data}{6}% 
+\contentsline {subsubsection}{\numberline {2.1.2}Assumptions made in the script}{6}% 
+\contentsline {subsection}{\numberline {2.2}Authentication of the Reviewers}{7}% 
+\contentsline {subsubsection}{\numberline {2.2.1}Authentication Issues}{7}% 
+\contentsline {subsection}{\numberline {2.3}Assessment of the Script's performance}{7}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Efficiency Problems}{7}% 
+\contentsline {subsubsection}{\numberline {2.3.2}Improving the Performance}{7}% 
+\contentsline {subsection}{\numberline {2.4}A short look at Structured Data vs Unstructured Markup}{8}% 
+\contentsline {subsection}{\numberline {2.5}Using Flat Files}{8}% 

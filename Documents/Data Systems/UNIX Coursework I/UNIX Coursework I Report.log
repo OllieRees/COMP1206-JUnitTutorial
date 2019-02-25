@@ -1,0 +1,214 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.1.30)  24 FEB 2019 12:02
+entering extended mode
+**"./UNIX Coursework I Report.tex"
+("UNIX Coursework I Report.tex"
+LaTeX2e <2018-12-01>
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size10.clo"
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\color.sty"
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex/listings\listings.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\lst@mode=\count88
+\lst@gtempboxa=\box27
+\lst@token=\toks15
+\lst@length=\count89
+\lst@currlwidth=\dimen103
+\lst@column=\count90
+\lst@pos=\count91
+\lst@lostspace=\dimen104
+\lst@width=\dimen105
+\lst@newlines=\count92
+\lst@lineno=\count93
+\lst@maxwidth=\dimen106
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstmisc.sty"
+File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
+\lst@framebox=\box28
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/listings\listings.cfg"
+File: listings.cfg 2018/09/02 1.7 listings configuration
+))
+Package: listings 2018/09/02 1.7 (Carsten Heinz)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstlang1.sty"
+File: lstlang1.sty 2018/09/02 1.7 listings language file
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstlang1.sty"
+File: lstlang1.sty 2018/09/02 1.7 listings language file
+)
+("UNIX Coursework I Report.aux")
+\openout1 = `"UNIX Coursework I Report.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+
+("C:\Program Files\MiKTeX 2.9\tex/context/base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count96
+\scratchdimen=\dimen107
+\scratchbox=\box29
+\nofMPsegments=\count97
+\nofMParguments=\count98
+\everyMPshowfont=\toks16
+\MPscratchCnt=\count99
+\MPscratchDim=\dimen108
+\MPnumerator=\count100
+\makeMPintoPDFobject=\count101
+\everyMPtoPDFconversion=\toks17
+)
+\c@lstlisting=\count102
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 37.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 37.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 37.
+ [1
+
+{C:/Users/Ollie Rees/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+("UNIX Coursework I Report.toc"
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+)
+\tf@toc=\write3
+\openout3 = `"UNIX Coursework I Report.toc"'.
+
+ [1] (Scripts/countreviews.sh)
+(Scripts/countreviews.sh) (Scripts/countreviews.sh) (Scripts/countreviews.sh)
+(Scripts/countreviews.sh) [2]
+Overfull \hbox (2.09033pt too wide) in paragraph at lines 73--77
+\OT1/cmr/m/n/10 reviewCount uses \OT1/cmr/bx/n/10 grep -c \OT1/cmr/m/n/10 to co
+unt the num-ber of times the ex-pres-sion $\OML/cmm/m/it/10 <$\OT1/cmr/m/it/10 
+Author$\OML/cmm/m/it/10 >$
+ []
+
+(Scripts/countreviews.sh) (Scripts/countreviews.sh) [3]
+(Scripts/averagereviews.sh) (Scripts/averagereviews.sh) [4]
+(Scripts/averagereviews.sh) (Scripts/averagereviews.sh)
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 131--134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--153
+
+ []
+
+[6] [7]
+Overfull \hbox (18.09863pt too wide) in paragraph at lines 185--185
+[]\OT1/cmr/bx/n/12 A short look at Struc-tured Data vs Un-struc-tured Markup 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--195
+
+ []
+
+[8] ("UNIX Coursework I Report.aux") ) 
+Here is how much of TeX's memory you used:
+ 2558 strings out of 492946
+ 34342 string characters out of 3135510
+ 297118 words of memory out of 3000000
+ 6458 multiletter control sequences out of 15000+200000
+ 9367 words of font info for 33 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 32i,6n,49p,457b,1184s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmtt9.pfb>
+Output written on "UNIX Coursework I Report.pdf" (9 pages, 165263 bytes).
+PDF statistics:
+ 76 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
