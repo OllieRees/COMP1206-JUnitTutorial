@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -164,10 +165,57 @@ class SPTTest {
 		int[][] edges = populateEdges(size);
 		int source = 0;
 		
+		
 		try {
 			assertEquals("The Shortest Path Tree returns the wrong number of elements", SPT.findSPT(edges, source).length , size);
 		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
 			fail("Exception thrown when it shouldn't have");
+		}
+	}
+	
+	/** Test whether the answer has more than one -1s */
+	@Test
+	void unconnectedNodeInTree() {
+		java.util.Random rand = new java.util.Random();
+		
+		int size = rand.nextInt(100) + 5;
+		
+		int[][] edges = populateEdges(size);
+		int source = 0;
+		
+		try {
+			int[] answer = SPT.findSPT(edges, source);
+			int negCounter = 0;
+			for(int e : answer) {
+				if(e == -1) {
+					negCounter++;
+				}
+			}
+			assertEquals("More than one sources in the SPT", negCounter, 1);
+		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e1) {
+			fail("Exception thrown when it shouldn't have");
+		}
+	}
+	
+	/** Test whether the answer has values less than -1. */
+	@Test
+	void answerHasLessThanSource() {
+		java.util.Random rand = new java.util.Random();
+		
+		int size = rand.nextInt(100) + 5;
+		
+		int[][] edges = populateEdges(size);
+		int source = 0;
+		
+		try {
+			int[] answer = SPT.findSPT(edges, source);
+			for(int e : answer) {
+				if(e < -1) {
+					fail("There's a node connected to a node that doesn't exist. Incorrect answer!");
+				}
+			}
+		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -367,5 +415,4 @@ class SPTTest {
 			fail("Exception shouldn't have been thrown");
 		}
 	}
-
 }
