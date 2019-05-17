@@ -4,9 +4,14 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 class SPTTest {
 
+	@BeforeAll
+	static void setUp() {
+		
+	}
 	/** Creates and populates an edge array with random weights between 0 and 40.
 	 * The element in the ith row and column will be -1, staying true to the formatting.
 	 * 
@@ -56,23 +61,8 @@ class SPTTest {
 	
 	/** Tests whether the algorithm gives the shortest path. */
 	@Test
-	void standardTest() {
-		int[][] sixEdges = 	{{-1, 4, 2, -1, -1, -1}, 
-					{4, -1, 1, 5, -1, -1},
-					{2, 1, -1, -1, 10, -1},
-					{-1, 5, 8, -1, 2, 6},
-					{-1, -1, 10, 2, -1, 5},
-					{-1, -1, -1, 6, 5, -1}};
-		int root = 0;
-		int[] expectedSixNodeAnswer = {-1, 2, 0, 1, 3, 3};
-		
-		//Call the respective test exception methods?
-		try {
-			int[] actualAnswer = SPT.findSPT(sixEdges, root);
-			assertArrayEquals("The method doesn't give the right answer", expectedSixNodeAnswer, actualAnswer);
-		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
-			e.printStackTrace();
-		}
+	void testUndirectedGraphs() {
+		int source = 0;
 		
 		int[][] nineEdges = {{-1, 4, -1, -1, -1, -1, -1, 8, -1},
 							{4, -1, 8, -1, -1, -1, -1, 11, -1},
@@ -82,16 +72,69 @@ class SPTTest {
 							{-1, -1, 4, 14, 10, -1, 2, -1, -1},
 							{-1, -1, -1, -1, -1, 2, -1, 1, 6},
 							{8, 11, -1, -1, -1, -1, 1, -1, 7},
-							{-1, -1, 2, -1, -1, -1, 6, 7, -1}};
-		int[] expectedNineNodeAnswer = {-1, 0, 1, 2, 5, 6, 7, 0, 2};
-		
+							{-1, -1, 2, -1, -1, -1, 6, 7, -1}};		
 		try {
-			int[] actualAnswer = SPT.findSPT(nineEdges, root);
-			assertArrayEquals("The method doesn't give the right answer", expectedNineNodeAnswer, actualAnswer);
+			int[] actualAnswer = SPT.findSPT(nineEdges, source);
+			int[] expectedAnswer = {-1, 0, 1, 2, 5, 6, 7, 0, 2};
+			assertArrayEquals("The method doesn't give the right answer", expectedAnswer, actualAnswer);
+		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
+			fail("Exception thrown when it shouldn't have");
+		}
+		
+		source = 2;
+
+		int[][] sixEdges = 	{{-1, 7, 9, -1, -1, 14}, 
+							{7, -1, 10, 15, -1, -1},
+							{9, 10, -1, 11, -1, 2},
+							{-1, 15, 11, -1, 6, -1},
+							{-1, -1, -1, 6, -1, 9},
+							{14, -1, 2, -1, 9, -1}};
+		
+		//Call the respective test exception methods?
+		try {
+			int[] actualAnswer = SPT.findSPT(sixEdges, source);
+			int[] expectedAnswer = {2, 2, -1, 2, 5, 2};
+			assertArrayEquals("The method doesn't give the right answer", expectedAnswer, actualAnswer);
 		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
 			fail("Exception thrown when it shouldn't have");
 		}
 	} 
+	
+	@Test 
+	void testDirectedGraphs() {
+		//directed edges 
+		int source = 0;
+		int[][] directedEdges_1 = {{-1, 8, 4, 11, -1, -1, -1},
+									{-1, -1, -1, 1, 3, -1, -1},
+									{-1, -1, -1, 9, -1, 6, -1},
+									{-1, -1, -1, -1, 4, 4, 17},
+									{-1, -1, -1, -1, -1, -1, 13},
+									{-1, -1, -1, -1, -1, -1, 15},
+									{-1, -1, -1, -1, -1, -1, -1}};
+		try {
+			int[] actualAnswer = SPT.findSPT(directedEdges_1, source);
+			int[] expectedAnswer = {-1, 0, 0, 1, 1, 2, 4};
+			assertArrayEquals("The method doesn't give the right answer", expectedAnswer, actualAnswer);
+		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
+			fail("Exception thrown when it shouldn't have : " + e.getMessage());
+		}
+		
+		source = 2;
+		int[][] directedEdges_2 = {{-1, -1, 2, -1, -1, -1},
+								   {5, -1, -1, 4, -1, -1},
+								   {-1, 8, -1, -1, 7, -1},
+								   {-1, -1, -1, -1, 6, 3},
+								   {-1, -1, -1, -1, -1, 1},
+								   {-1, -1, -1, -1, -1, -1}};
+		try {
+			int[] actualAnswer = SPT.findSPT(directedEdges_2, source);
+			int[] expectedAnswer = {1, 2, -1, 1, 2, 4};
+			assertArrayEquals("The method doesn't give the right answer", expectedAnswer, actualAnswer);
+		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
+			fail("Exception thrown when it shouldn't have : " + e.getMessage());
+		}
+		
+	}
 	
 	/** Tests whether an NPE is thrown when the source is null (can be assumed that an integer parameter is given and auto-unboxed) */
 	@Test
@@ -144,15 +187,6 @@ class SPTTest {
 				assertEquals("The source isn't represented by a -1 in the answer", SPT.findSPT(edges, source)[source], -1);
 			}
 		} catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
-			fail("Exception thrown when it shouldn't have");
-		}
-				
-		try {
-			for(int i = 0; i < edges.length; i++) {
-				int source = i;
-				assertEquals("The source isn't represented by a -1 in the answer", SPT.findSPT(edges, source)[source], -1);
-			} 
-		}catch (InvalidSourceException | InvalidGraphException | LoopDetectedException | NoPathException e) {
 			fail("Exception thrown when it shouldn't have");
 		}
 	}
