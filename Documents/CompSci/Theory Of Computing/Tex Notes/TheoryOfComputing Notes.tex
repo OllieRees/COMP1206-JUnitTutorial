@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+\title{Theory of Computing Notes}
+\author{Ollie Rees}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\section{Alphabet, Strings and Languages}
+	\subsection{Alphabet}
+	An alphabet is a set of symbols.
+	\begin{eqnarray}
+		\Sigma := \{0, 1\}
+	\end{eqnarray}
+	The above is the alphabet of binary strings. \newline
+	An alphabet defines what characters a string can have.
+	\subsection{Strings}
+	Strings are a sequence of elements of the alphabet. 
+	\begin{eqnarray}
+		string := \{\sigma_0\sigma_1...\sigma_k\}. \sigma_i \in \Sigma
+	\end{eqnarray}
+	The set of all possible strings over an alphabet is defined below.
+	\begin{eqnarray}
+		\Sigma^{*} := \{s | \bigcap_{\sigma \in s} \in \Sigma\}
+	\end{eqnarray}
+	\subsection{Functions on Strings} 
+	We can define a function that takes the number of letters in a string, where the letters are elements of an alphabet. 
+	\begin{eqnarray}
+		\# : \Sigma^* \rightarrow \mathbb{N} \\
+		\#(s) = \#\{\sigma_0\sigma_1...\sigma_k\} = k
+	\end{eqnarray}
+	There is also concatenations of strings, defined as such.
+	\begin{eqnarray}
+		xy := {xy | x \in \Sigma^* . y \in \Sigma^*} 
+	\end{eqnarray}
+	\subsection{Languages} 
+	A language is a subset of all the possible strings : $L \subseteq \Sigma^* $. \newline
+	Two languages are equal when there is a bijective function between the two. \newline
+	\section{Deterministic Finite Automata}
+	\subsection{Definition}
+	Deterministic Finite Automata (DFA) are machines with a finite number of states that accepts a set of strings over an alphabet. \newline
+	The set of strings an automata depends on the construction of the automata, for example an automata may only accept states that end with 'a'. \newline
+	The alphabet is represented, in an automata, by the path between states. \newline
+	The mathematical definition of them is,
+	\begin{eqnarray}
+		M = \{Q, \Sigma, \delta, s, F \}
+	\end{eqnarray}
+	$ Q $ is a set where its elements are the states in the automata. \newline
+	$\Sigma$ is the alphabet that the automata spans over, which is represented by the paths between states. \newline
+	$\delta$ is the transition function, defined as $\delta: Q \times \Sigma \rightarrow Q $; $\delta(q_0, a) = q_1$ means that $q_0$ connects to $q_1$ via the letter 'a'. \newline
+	$s$ is the starting state; in a DFA there is only one start state. \newline
+	$F$ is the set of final states, also called accept states, since if a string ends on one it's accepted by the automata. \newline
+	\subsubsection{Purpose}
+	As briefly mentioned, the purpose of a DFA is to produce a language that follow a set of rules. \newline
+	\subsubsection{Determinism}
+	\subsection{Properties}
+	\subsubsection{States}
+	\subsubsection{Start State and Final States}
+	\subsubsection{Transition Function}
+	\subsubsection{Aggregate Transition Function}
+	\subsection{Regular Languages}
+	\subsubsection{Definition}
+	\subsection{Operations on Automata}
+	\subsubsection{Testing for Equality}
+	\subsubsection{Complement}
+	\subsubsection{Intersection}
+	\subsubsection{Union}
+	\subsubsection{Concatenation}
+	\subsubsection{Asterate}
+	\section{Nondeterministic Finite Automata}
+	\subsection{Definition}
+	\subsubsection{Literal definition}
+	\subsubsection{Definition in relation to DFA}
+	\subsection{DFA-NFA Relations}
+	\subsubsection{Constructing DFA from NFA}
+	\subsubsection{Consequences} 
+\end{document}
